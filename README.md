@@ -1,4 +1,4 @@
-# node-lb-contacts
+# node-lb-contacts:
 # To build the container:
 docker build --no-cache -t node-lb-contacts:latest .
 # To run the container as a daemon:
