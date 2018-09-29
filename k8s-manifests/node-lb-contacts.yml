@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: node-lb-contacts
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-lb-contacts
+  namespace: node-lb-contacts
+  labels:
+    app: node-lb-contacts
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: node-lb-contacts
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: node-lb-contacts
+  namespace: node-lb-contacts
+  labels:
+    app: node-lb-contacts
+spec:
+  selector:
+    matchLabels:
+      app: node-lb-contacts
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: node-lb-contacts
+        tier: frontend
+    spec:
+      containers:
+      - image: acquianjperez/node-lb-contacts
+        name: node-lb-contacts
+        ports:
+        - containerPort: 3000
