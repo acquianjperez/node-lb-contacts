@@ -3,7 +3,7 @@
     "name": "local",
     "localStorage": "",
     "file": "",
-    "connector": "redis"
+    "connector": "redis",
     "host": "redis-master"
   }
 }

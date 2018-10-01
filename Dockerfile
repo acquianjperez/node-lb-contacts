@@ -6,6 +6,7 @@ WORKDIR /usr/src/node-lb-contacts/
 
 # Install app dependencies
 COPY package.json /usr/src/node-lb-contacts/package.json
+RUN npm install loopback-connector-redis --save
 RUN npm install
 
 # Bundle app source
